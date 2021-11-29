@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation";
 import ProductList from "./components/ProductList/ProductList";
 import { FaDivide } from "react-icons/fa";
-import { Router } from "@reach/router";
+import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
   return (
