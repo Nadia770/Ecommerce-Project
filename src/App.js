@@ -1,10 +1,12 @@
-import './App.css';
+import './App.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
+// import {Router} from '@reach/router'
 
 function App() {
   return (
-    <div className="App">
-   hello
-    </div>
+<div>
+  hello
+</div>
   );
 }
 
