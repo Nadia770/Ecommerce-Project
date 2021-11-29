@@ -1,11 +1,17 @@
 import './App.css'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navigation from './components/Navigation';
-// import {Router} from '@reach/router'
+import {BrowserRouter as Router}  from '@react-router-dom'
 
 function App() {
   return (
-<Navigation></Navigation>
+    <div>
+  <Navigation/>
+  {/* <Router>
+  <ProductList path="/home"/>
+  <Cart path="/cart"/>
+  </Router> */}
+  </div>
   );
 }
 
