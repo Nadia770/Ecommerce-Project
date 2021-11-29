@@ -1,5 +1,6 @@
 import React from 'react'
-import { Navbar, NavDropdown, Nav, Container, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Container, Form, FormControl, Button } from "react-bootstrap";
+import {FaShoppingCart, FaUser} from "react-icons/fa";
 
 export default function Navigation() {
   return (
@@ -11,8 +12,8 @@ export default function Navigation() {
         <Nav className="me-auto">
           <Nav.Link href="#home">Home</Nav.Link>
         </Nav>
-        <Nav.Link className="justify-content-end" href="#home">Cart</Nav.Link>
-        <Nav.Link className="justify-content-end" href="#link">Login</Nav.Link>
+        <Nav.Link className="justify-content-end" href="#Cart"><FaShoppingCart/>Cart</Nav.Link>
+        <Nav.Link className="justify-content-end" href="#link"><FaUser/>Login</Nav.Link>
       </Navbar.Collapse>
       <Form className="d-flex">
         <FormControl
