@@ -1,6 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ProductList from "./ProductList/ProductList";
+import ProductList from "./components/ProductList/ProductList";
 
 function App() {
   return (
