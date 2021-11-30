@@ -28,22 +28,23 @@ function App() {
       username: loginDetails.username,
       password: e.target.value,
     });
+
+  //Login
+  function userLogin() {
+    return fetch(`http://localhost:8080/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginDetails),
+    });
+  }
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    console.log(loginDetails);
+    userLogin();
   };
-
-  // //Login
-  // function Login(userID) {
-  //   return fetch(`http://localhost:8080/cart/${userID}`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     // body: JSON.stringify(newContact),
-  //   });
 
   //Get product List
   function fetchProductList() {
-    fetch("http://localhost:8080/product")
+    fetch("http://localhost:8080/products")
       .then((res) => {
         return res.json();
       })
