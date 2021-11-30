@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
+import classes from "./CartItems.module.css";
 
 function CartItems(props) {
   return (
@@ -14,7 +15,9 @@ function CartItems(props) {
       </td>
       <td>
         <div>
-          <Button>+</Button> {props.quantity} <Button>-</Button>
+          <Button>+</Button>{" "}
+          <span className={classes.quantity}>{props.quantity}</span>{" "}
+          <Button>-</Button>
         </div>
       </td>
       <td>{props.price}</td>

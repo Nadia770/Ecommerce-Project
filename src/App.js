@@ -12,22 +12,34 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [loginDetails, setLoginDetails] = useState({});
   const [productList, setProductList] = useState([]);
+  const [cartProducts, setCartProducts] = useState([]);
 
-  //Login functionaility
+  //Login Modal functionaility
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
 
-  const handleChangeName = (e) =>
-    setLoginDetails({ name: e.target.value, password: loginDetails.password });
+  const handleChangeUserName = (e) =>
+    setLoginDetails({
+      username: e.target.value,
+      password: loginDetails.password,
+    });
   const handleChangePassword = (e) =>
     setLoginDetails({
-      name: loginDetails.name,
+      username: loginDetails.username,
       password: e.target.value,
     });
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     console.log(loginDetails);
   };
+
+  // //Login
+  // function Login(userID) {
+  //   return fetch(`http://localhost:8080/cart/${userID}`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     // body: JSON.stringify(newContact),
+  //   });
 
   //Get product List
   function fetchProductList() {
@@ -44,6 +56,35 @@ function App() {
   //   fetchProductList();
   //   console.log(productList);
   // }, []);
+
+  //Get cart products
+  function fetchCartProducts(userID) {
+    fetch(`http://localhost:8080/cart/${userID}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setCartProducts(data);
+      });
+  }
+
+  //Add product to cart
+  function addToCart(userID) {
+    return fetch(`http://localhost:8080/cart/${userID}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      // body: JSON.stringify(newContact),
+    });
+  }
+
+  //Decrement product in cart
+  function decrementProduct(userID) {
+    fetch(`http://localhost:8080/contact/${userID}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      // body: JSON.stringify(editedContact),
+    });
+  }
 
   const testProductList = [
     {
@@ -80,7 +121,7 @@ function App() {
     },
   ];
 
-  const cart = [
+  const testCart = [
     {
       id: 1,
       name: "Pineapple",
@@ -107,7 +148,7 @@ function App() {
         <Login
           handleCloseLogin={handleCloseLogin}
           showLogin={showLogin}
-          handleChangeName={handleChangeName}
+          handleChangeUserName={handleChangeUserName}
           handleChangePassword={handleChangePassword}
           handleSubmitLogin={handleSubmitLogin}
         ></Login>
@@ -122,7 +163,7 @@ function App() {
               ></ProductList>
             }
           ></Route>
-          <Route path="/cart" element={<Cart cart={cart}></Cart>}></Route>
+          <Route path="/cart" element={<Cart cart={testCart}></Cart>}></Route>
         </Routes>
       </Router>
     </div>

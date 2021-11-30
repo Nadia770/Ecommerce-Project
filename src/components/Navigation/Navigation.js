@@ -26,7 +26,7 @@ export default function Navigation(props) {
           <Nav.Link className="justify-content-end">
             <Link to="/cart" className={classes.link}>
               <FaShoppingCart />
-              Cart
+              <span className={classes.navText}>Cart</span>
             </Link>
           </Nav.Link>
           <Nav.Link
@@ -35,7 +35,7 @@ export default function Navigation(props) {
             className={classes.link}
           >
             <FaUser />
-            Login
+            <span className={classes.navText}>Login</span>
           </Nav.Link>
         </Navbar.Collapse>
         <Form className="d-flex">
