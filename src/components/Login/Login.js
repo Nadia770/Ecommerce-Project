@@ -12,12 +12,12 @@ function Login(props) {
             <Modal.Title>Login</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="Enter email"
-                onChange={props.handleChangeEmail}
+                type="text"
+                placeholder="Name"
+                onChange={props.handleChangeName}
               />
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.

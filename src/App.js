@@ -1,25 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation/Navigation";
 import ProductList from "./components/ProductList/ProductList";
 import Login from "./components/Login/Login";
+import Cart from "./components/Cart/Cart";
 import { FaDivide } from "react-icons/fa";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [loginDetails, setLoginDetails] = useState({});
+  const [productList, setProductList] = useState([]);
 
   //Login functionaility
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
 
-  const handleChangeEmail = (e) =>
-    setLoginDetails({ email: e.target.value, password: loginDetails.password });
+  const handleChangeName = (e) =>
+    setLoginDetails({ name: e.target.value, password: loginDetails.password });
   const handleChangePassword = (e) =>
     setLoginDetails({
-      email: loginDetails.email,
+      name: loginDetails.name,
       password: e.target.value,
     });
   const handleSubmitLogin = (e) => {
@@ -27,7 +29,23 @@ function App() {
     console.log(loginDetails);
   };
 
-  const productList = [
+  //Get product List
+  function fetchProductList() {
+    fetch("http://localhost:8080/product")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setProductList(data);
+      });
+  }
+
+  // useEffect(() => {
+  //   fetchProductList();
+  //   console.log(productList);
+  // }, []);
+
+  const testProductList = [
     {
       id: 1,
       name: "Pineapple",
@@ -61,23 +79,51 @@ function App() {
       description: "Ripe Pineapple",
     },
   ];
+
+  const cart = [
+    {
+      id: 1,
+      name: "Pineapple",
+      price: "£5",
+      image:
+        "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60/",
+      quantity: "2",
+      totalPrice: "£10",
+    },
+    {
+      id: 2,
+      name: "Pineapple",
+      price: "£5",
+      image:
+        "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60",
+      quantity: "2",
+      totalPrice: "£10",
+    },
+  ];
   return (
     <div>
-      <Navigation></Navigation>
       <Router>
-        <ProductList
-          path="/home"
-          productList={productList}
-          handleShowLogin={handleShowLogin}
-        ></ProductList>
+        <Navigation handleShowLogin={handleShowLogin}></Navigation>
         <Login
-          path="/login"
           handleCloseLogin={handleCloseLogin}
           showLogin={showLogin}
-          handleChangeEmail={handleChangeEmail}
+          handleChangeName={handleChangeName}
           handleChangePassword={handleChangePassword}
           handleSubmitLogin={handleSubmitLogin}
         ></Login>
+        <Routes>
+          <Route
+            exact
+            path="/"
+            element={
+              <ProductList
+                productList={testProductList}
+                handleShowLogin={handleShowLogin}
+              ></ProductList>
+            }
+          ></Route>
+          <Route path="/cart" element={<Cart cart={cart}></Cart>}></Route>
+        </Routes>
       </Router>
     </div>
   );

@@ -1,30 +1,53 @@
-import React from 'react'
-import { Navbar, Nav, Container, Form, FormControl, Button } from "react-bootstrap";
-import {FaShoppingCart, FaUser} from "react-icons/fa";
+import React from "react";
+import {
+  Navbar,
+  Nav,
+  Container,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
+import { FaShoppingCart, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import classes from "./Navigation.module.css";
 
-export default function Navigation() {
+export default function Navigation(props) {
   return (
     <Navbar bg="light" expand="lg">
-    <Container>
-      <Navbar.Brand href="#home">Ecommerce Project</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-        </Nav>
-        <Nav.Link className="justify-content-end" href="#Cart"><FaShoppingCart/>Cart</Nav.Link>
-        <Nav.Link className="justify-content-end" href="#link"><FaUser/>Login</Nav.Link>
-      </Navbar.Collapse>
-      <Form className="d-flex">
-        <FormControl
-          type="search"
-          placeholder="Search"
-          className="me-2"
-          aria-label="Search"
-        />
-        <Button variant="outline-success">Search</Button>
-      </Form>
-    </Container>
-  </Navbar>
-  )
+      <Container>
+        <Navbar.Brand href="#home">Ecommerce Project</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <Link to="/" className={classes.link}>
+              Home
+            </Link>
+          </Nav>
+          <Nav.Link className="justify-content-end">
+            <Link to="/cart" className={classes.link}>
+              <FaShoppingCart />
+              Cart
+            </Link>
+          </Nav.Link>
+          <Nav.Link
+            className="justify-content-end"
+            onClick={props.handleShowLogin}
+            className={classes.link}
+          >
+            <FaUser />
+            Login
+          </Nav.Link>
+        </Navbar.Collapse>
+        <Form className="d-flex">
+          <FormControl
+            type="search"
+            placeholder="Search"
+            className="me-2"
+            aria-label="Search"
+          />
+          <Button variant="outline-success">Search</Button>
+        </Form>
+      </Container>
+    </Navbar>
+  );
 }
