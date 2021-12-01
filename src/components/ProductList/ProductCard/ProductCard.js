@@ -10,7 +10,7 @@ function ProductCard(props) {
       <Card border="dark" style={{ width: "18rem" }} className={classes.card}>
         <Image
           src={props.image}
-          style={{ maxHeight: "22rem", objectFit: "cover" }}
+          style={{ width: "100%", height: "25vw", objectFit: "cover" }}
         />
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>

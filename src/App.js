@@ -56,6 +56,16 @@ function App() {
       });
   }
 
+  function fetchProductList() {
+    fetch("http://localhost:8080/products")
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setProductList(data);
+      });
+  }
+
   useEffect(() => {
     fetchProductList();
   }, []);
