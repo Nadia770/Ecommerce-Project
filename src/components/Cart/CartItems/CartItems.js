@@ -15,13 +15,12 @@ function CartItems(props) {
       </td>
       <td>
         <div>
-          <Button>+</Button>{" "}
-          <span className={classes.quantity}>{props.quantity}</span>{" "}
+          <Button>+</Button> <span className={classes.quantity}>1</span>{" "}
           <Button>-</Button>
         </div>
       </td>
       <td>{props.price}</td>
-      <td>{props.totalPrice}</td>
+      <td>2</td>
     </tr>
   );
 }

@@ -23,19 +23,25 @@ export default function Navigation(props) {
               Home
             </Link>
           </Nav>
-          <Nav.Link className="justify-content-end">
-            <Link to="/cart" className={classes.link}>
+          <Link
+            to="/cart"
+            className="justify-content-end"
+            onClick={() => props.fetchCartProducts(1)}
+          >
+            <span className={classes.link}>
               <FaShoppingCart />
               <span className={classes.navText}>Cart</span>
-            </Link>
-          </Nav.Link>
+            </span>
+          </Link>
+
           <Nav.Link
             className="justify-content-end"
             onClick={props.handleShowLogin}
-            className={classes.link}
           >
-            <FaUser />
-            <span className={classes.navText}>Login</span>
+            <span className={classes.link}>
+              <FaUser />
+              <span className={classes.navText}>Login</span>
+            </span>
           </Nav.Link>
         </Navbar.Collapse>
         <Form className="d-flex">

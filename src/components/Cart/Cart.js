@@ -8,6 +8,7 @@ function Cart(props) {
   const displayCartItems = props.cart.map((product) => {
     return (
       <CartItems
+        key={product.id}
         image={product.image}
         name={product.name}
         quantity={product.quantity}
@@ -29,10 +30,10 @@ function Cart(props) {
           </tr>
         </thead>
         <tbody>{displayCartItems}</tbody>
-        <Button variant="danger" className={classes.checkout}>
-          Checkout
-        </Button>
       </Table>
+      <Button variant="danger" className={classes.checkout}>
+        Checkout
+      </Button>
     </div>
   );
 }
