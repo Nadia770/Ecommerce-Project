@@ -91,14 +91,12 @@ function App() {
   }
 
 
-  //filter userinput in searchbar
-
+//search functionality
   const searchHandler = (searchTerm)=>{
     setSearchTerm(searchTerm);
     if(searchTerm !== ""){
       const filteredProductList = productList.filter((product)=>{
-        return Object.values(product)
-        .join(" ")
+        return product.name
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
       });
