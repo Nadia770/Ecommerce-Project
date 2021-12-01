@@ -12,6 +12,10 @@ function App() {
   const [loginDetails, setLoginDetails] = useState({});
   const [productList, setProductList] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]); 
+
+
 
   //Login Modal functionaility
   const handleCloseLogin = () => setShowLogin(false);
@@ -83,8 +87,28 @@ function App() {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       // body: JSON.stringify(),
-    });
+    }); 
   }
+
+
+  //filter userinput in searchbar
+
+  const searchHandler = (searchTerm)=>{
+    setSearchTerm(searchTerm);
+    if(searchTerm !== ""){
+      const filteredProductList = productList.filter((product)=>{
+        return Object.values(product)
+        .join(" ")
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+      });
+      setSearchResults(filteredProductList);
+    }
+    else {
+      setSearchResults(productList);
+    }
+  }
+
 
   const testCart = [
     {
@@ -112,6 +136,9 @@ function App() {
         <Navigation
           handleShowLogin={handleShowLogin}
           fetchCartProducts={fetchCartProducts}
+          searchTerm={searchTerm}
+          searchHandler={searchHandler}
+
         ></Navigation>
         <Login
           handleCloseLogin={handleCloseLogin}
@@ -126,7 +153,7 @@ function App() {
             path="/"
             element={
               <ProductList
-                productList={productList}
+                productList={searchTerm.length < 1? productList : searchResults}
                 handleShowLogin={handleShowLogin}
               ></ProductList>
             }

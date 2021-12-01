@@ -5,13 +5,17 @@ import {
   Container,
   Form,
   FormControl,
-  Button,
 } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import classes from "./Navigation.module.css";
 
 export default function Navigation(props) {
+
+const getSearchTerm = (event)=>{
+  props.searchHandler(event.target.value)
+}
+
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -50,8 +54,9 @@ export default function Navigation(props) {
             placeholder="Search"
             className="me-2"
             aria-label="Search"
+            value={props.searchTerm}
+            onChange = {getSearchTerm}
           />
-          <Button variant="outline-success">Search</Button>
         </Form>
       </Container>
     </Navbar>
