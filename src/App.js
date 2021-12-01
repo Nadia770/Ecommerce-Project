@@ -5,7 +5,6 @@ import Navigation from "./components/Navigation/Navigation";
 import ProductList from "./components/ProductList/ProductList";
 import Login from "./components/Login/Login";
 import Cart from "./components/Cart/Cart";
-import { FaDivide } from "react-icons/fa";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -30,16 +29,16 @@ function App() {
     });
 
   //Login
-  function userLogin() {
-    return fetch(`http://localhost:8080/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(loginDetails),
-    });
-  }
+  // function userLogin() {
+  //   return fetch(`http://localhost:8080/login`, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(loginDetails),
+  //   });
+  // }
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    userLogin();
+    // userLogin();
   };
 
   //Get product List
@@ -53,74 +52,39 @@ function App() {
       });
   }
 
-  // useEffect(() => {
-  //   fetchProductList();
-  //   console.log(productList);
-  // }, []);
+  useEffect(() => {
+    fetchProductList();
+  }, []);
 
   //Get cart products
-  function fetchCartProducts(userID) {
-    fetch(`http://localhost:8080/cart/${userID}`)
+  function fetchCartProducts(id) {
+    fetch(`http://localhost:8080/cart/${id}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         setCartProducts(data);
+        console.log(data);
       });
   }
 
   //Add product to cart
-  function addToCart(userID) {
-    return fetch(`http://localhost:8080/cart/${userID}`, {
+  function addToCart(id) {
+    return fetch(`http://localhost:8080/cart/${id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify(newContact),
+      // body: JSON.stringify(),
     });
   }
 
   //Decrement product in cart
-  function decrementProduct(userID) {
-    fetch(`http://localhost:8080/contact/${userID}`, {
+  function decrementProduct(id) {
+    fetch(`http://localhost:8080/contact/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify(editedContact),
+      // body: JSON.stringify(),
     });
   }
-
-  const testProductList = [
-    {
-      id: 1,
-      name: "Pineapple",
-      price: "£5",
-      image:
-        "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60/",
-      description: "Ripe Pineapple",
-    },
-    {
-      id: 2,
-      name: "Pineapple",
-      price: "£5",
-      image:
-        "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60",
-      description: "Ripe Pineapple",
-    },
-    {
-      id: 3,
-      name: "Pineapple",
-      price: "£5",
-      image:
-        "https://images.unsplash.com/photo-1557800636-894a64c1696f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60",
-      description: "Ripe Pineapple",
-    },
-    {
-      id: 4,
-      name: "Pineapple",
-      price: "£5",
-      image:
-        "https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-      description: "Ripe Pineapple",
-    },
-  ];
 
   const testCart = [
     {
@@ -145,7 +109,10 @@ function App() {
   return (
     <div>
       <Router>
-        <Navigation handleShowLogin={handleShowLogin}></Navigation>
+        <Navigation
+          handleShowLogin={handleShowLogin}
+          fetchCartProducts={fetchCartProducts}
+        ></Navigation>
         <Login
           handleCloseLogin={handleCloseLogin}
           showLogin={showLogin}
@@ -159,7 +126,7 @@ function App() {
             path="/"
             element={
               <ProductList
-                productList={testProductList}
+                productList={productList}
                 handleShowLogin={handleShowLogin}
               ></ProductList>
             }
@@ -172,3 +139,38 @@ function App() {
 }
 
 export default App;
+
+// const testProductList = [
+//   {
+//     id: 1,
+//     name: "Pineapple",
+//     price: "£5",
+//     image:
+//       "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60/",
+//     description: "Ripe Pineapple",
+//   },
+//   {
+//     id: 2,
+//     name: "Pineapple",
+//     price: "£5",
+//     image:
+//       "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60",
+//     description: "Ripe Pineapple",
+//   },
+//   {
+//     id: 3,
+//     name: "Pineapple",
+//     price: "£5",
+//     image:
+//       "https://images.unsplash.com/photo-1557800636-894a64c1696f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60",
+//     description: "Ripe Pineapple",
+//   },
+//   {
+//     id: 4,
+//     name: "Pineapple",
+//     price: "£5",
+//     image:
+//       "https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
+//     description: "Ripe Pineapple",
+//   },
+// ];
