@@ -15,8 +15,21 @@ function CartItems(props) {
       </td>
       <td>
         <div>
-          <Button>+</Button> <span className={classes.quantity}>1</span>{" "}
-          <Button>-</Button>
+          <Button
+            onClick={() => {
+              props.incrementProduct(props.id);
+            }}
+          >
+            +
+          </Button>{" "}
+          <span className={classes.quantity}>1</span>{" "}
+          <Button
+            onClick={() => {
+              props.decrementProduct(props.id);
+            }}
+          >
+            -
+          </Button>
         </div>
       </td>
       <td>{props.price}</td>

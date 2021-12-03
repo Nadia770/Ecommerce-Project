@@ -15,6 +15,7 @@ function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [amendedProduct, setAmendedProduct] = useState({});
 
   //Login Modal functionaility
   const handleCloseLogin = () => setShowLogin(false);
@@ -56,16 +57,6 @@ function App() {
       });
   }
 
-  function fetchProductList() {
-    fetch("http://localhost:8080/products")
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setProductList(data);
-      });
-  }
-
   useEffect(() => {
     fetchProductList();
   }, []);
@@ -89,17 +80,20 @@ function App() {
     return fetch("http://localhost:8080/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(addedProduct[0]),
+      body: JSON.stringify(addedProduct),
     });
   }
 
   //Increment product in cart
   function incrementProduct(id) {
+    const addProduct = productList.filter((product) => product.id === id);
+    addProduct[0].count++;
     fetch(`http://localhost:8080/cart/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify(),
+      body: JSON.stringify(addProduct[0]),
     });
+    fetchCartProducts();
   }
 
   //Decrement product in cart
@@ -155,7 +149,13 @@ function App() {
           ></Route>
           <Route
             path="/cart"
-            element={<Cart cart={cartProducts}></Cart>}
+            element={
+              <Cart
+                cart={cartProducts}
+                incrementProduct={incrementProduct}
+                decrementProduct={decrementProduct}
+              ></Cart>
+            }
           ></Route>
         </Routes>
       </Router>

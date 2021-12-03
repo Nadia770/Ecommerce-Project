@@ -9,11 +9,14 @@ function Cart(props) {
     return (
       <CartItems
         key={product.id}
+        id={product.id}
         image={product.image}
         name={product.name}
         quantity={product.quantity}
         price={product.price}
         totalPrice={product.totalPrice}
+        incrementProduct={props.incrementProduct}
+        decrementProduct={props.decrementProduct}
       />
     );
   });
