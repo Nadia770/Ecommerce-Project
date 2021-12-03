@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./components/Navigation/Navigation";
 import ProductList from "./components/ProductList/ProductList";
 import Login from "./components/Login/Login";
+
 import Cart from "./components/Cart/Cart";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -13,9 +14,7 @@ function App() {
   const [productList, setProductList] = useState([]);
   const [cartProducts, setCartProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]); 
-
-
+  const [searchResults, setSearchResults] = useState([]);
 
   //Login Modal functionaility
   const handleCloseLogin = () => setShowLogin(false);
@@ -42,7 +41,8 @@ function App() {
   // }
   const handleSubmitLogin = (e) => {
     e.preventDefault();
-    // userLogin();
+    console.log(loginDetails);
+    userLogin();
   };
 
   //Get product List
@@ -97,9 +97,10 @@ function App() {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       // body: JSON.stringify(),
-    }); 
+    });
   }
 
+<<<<<<< Updated upstream
 
 //search functionality
   const searchHandler = (searchTerm)=>{
@@ -109,14 +110,24 @@ function App() {
         return product.name
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
+=======
+  //filter userinput in searchbar
+
+  const searchHandler = (searchTerm) => {
+    setSearchTerm(searchTerm);
+    if (searchTerm !== "") {
+      const filteredProductList = productList.filter((product) => {
+        return Object.values(product)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+>>>>>>> Stashed changes
       });
       setSearchResults(filteredProductList);
-    }
-    else {
+    } else {
       setSearchResults(productList);
     }
-  }
-
+  };
 
   const testCart = [
     {
@@ -146,7 +157,6 @@ function App() {
           fetchCartProducts={fetchCartProducts}
           searchTerm={searchTerm}
           searchHandler={searchHandler}
-
         ></Navigation>
         <Login
           handleCloseLogin={handleCloseLogin}
@@ -161,8 +171,10 @@ function App() {
             path="/"
             element={
               <ProductList
-                productList={searchTerm.length < 1? productList : searchResults}
-                handleShowLogin={handleShowLogin}
+                productList={
+                  searchTerm.length < 1 ? productList : searchResults
+                }
+                // handleShowLogin={handleShowLogin}
               ></ProductList>
             }
           ></Route>

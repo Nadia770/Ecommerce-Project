@@ -1,20 +1,13 @@
 import React from "react";
-import {
-  Navbar,
-  Nav,
-  Container,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import { Navbar, Nav, Container, Form, FormControl } from "react-bootstrap";
 import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import classes from "./Navigation.module.css";
 
 export default function Navigation(props) {
-
-const getSearchTerm = (event)=>{
-  props.searchHandler(event.target.value)
-}
+  const getSearchTerm = (event) => {
+    props.searchHandler(event.target.value);
+  };
 
   return (
     <Navbar bg="light" expand="lg">
@@ -37,8 +30,8 @@ const getSearchTerm = (event)=>{
               <span className={classes.navText}>Cart</span>
             </span>
           </Link>
-
           <Nav.Link
+            to="/login"
             className="justify-content-end"
             onClick={props.handleShowLogin}
           >
@@ -55,7 +48,7 @@ const getSearchTerm = (event)=>{
             className="me-2"
             aria-label="Search"
             value={props.searchTerm}
-            onChange = {getSearchTerm}
+            onChange={getSearchTerm}
           />
         </Form>
       </Container>
