@@ -12,11 +12,14 @@ function Cart(props) {
         id={product.id}
         image={product.image}
         name={product.name}
-        quantity={product.quantity}
+        count={product.count}
         price={product.price}
         totalPrice={product.totalPrice}
         incrementProduct={props.incrementProduct}
         decrementProduct={props.decrementProduct}
+        productCount={props.productCount}
+        setProductCount={props.setProductCount}
+        countOfProducts={props.countOfProducts}
       />
     );
   });

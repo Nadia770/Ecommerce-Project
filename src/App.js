@@ -15,7 +15,7 @@ function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [amendedProduct, setAmendedProduct] = useState({});
+  const [productCount, setProductCount] = useState(1);
 
   //Login Modal functionaility
   const handleCloseLogin = () => setShowLogin(false);
@@ -69,8 +69,8 @@ function App() {
       })
       .then((data) => {
         setCartProducts(data);
-        console.log(data);
       });
+    console.log("This is invoked");
   }
 
   //Add product to cart
@@ -84,25 +84,48 @@ function App() {
     });
   }
 
+  function countOfProducts(id, increment) {
+    const addProduct = productList.filter((product) => product.id === id);
+    setProductCount(productCount + increment);
+    addProduct[0].count = productCount;
+    console.log(addProduct);
+    console.log(productCount);
+  }
+
   //Increment product in cart
   function incrementProduct(id) {
-    const addProduct = productList.filter((product) => product.id === id);
-    addProduct[0].count++;
+    setCartProducts((cart) =>
+      cart.map((product) =>
+        id === product.id
+          ? { ...product, count: product.count + (product.count < 30 ? 1 : 0) }
+          : product
+      )
+    );
     fetch(`http://localhost:8080/cart/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(addProduct[0]),
+      body: JSON.stringify(cartProducts),
     });
-    fetchCartProducts();
+    console.log(cartProducts);
   }
 
   //Decrement product in cart
   function decrementProduct(id) {
+    setCartProducts((cart) =>
+      cart.map((product) =>
+        id === product.id
+          ? { ...product, count: product.count - (product.count > 1 ? 1 : 0) }
+          : product
+      )
+    );
+    const newProduct = cartProducts.filter((product) => product.id === id);
+
     fetch(`http://localhost:8080/cart/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify(),
+      body: JSON.stringify(newProduct),
     });
+    console.log(cartProducts);
   }
 
   //search functionality
@@ -154,6 +177,9 @@ function App() {
                 cart={cartProducts}
                 incrementProduct={incrementProduct}
                 decrementProduct={decrementProduct}
+                productCount={productCount}
+                setProductCount={setProductCount}
+                countOfProducts={countOfProducts}
               ></Cart>
             }
           ></Route>

@@ -22,7 +22,7 @@ function CartItems(props) {
           >
             +
           </Button>{" "}
-          <span className={classes.quantity}>1</span>{" "}
+          <span className={classes.quantity}>{props.count}</span>{" "}
           <Button
             onClick={() => {
               props.decrementProduct(props.id);
