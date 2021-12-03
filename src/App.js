@@ -88,8 +88,8 @@ function App() {
     console.log(JSON.stringify(addedProduct));
     return fetch("http://localhost:8080/cart", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(addedProduct),
+      headers: { "Content-Type": "application/json"},
+      body: JSON.stringify(addedProduct[0]),
     });
   }
 
