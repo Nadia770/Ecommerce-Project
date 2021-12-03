@@ -83,11 +83,13 @@ function App() {
   }
 
   //Add product to cart
-  function addToCart() {
-    return fetch(`http://localhost:8080/cart`, {
+  function addToCart(id) {
+    const addedProduct = productList.filter((product) => product.id === id);
+    console.log(JSON.stringify(addedProduct));
+    return fetch("http://localhost:8080/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      // body: JSON.stringify(),
+      body: JSON.stringify(addedProduct),
     });
   }
 
@@ -167,7 +169,7 @@ function App() {
                 productList={
                   searchTerm.length < 1 ? productList : searchResults
                 }
-                // handleShowLogin={handleShowLogin}
+                addToCart={addToCart}
               ></ProductList>
             }
           ></Route>
@@ -179,38 +181,3 @@ function App() {
 }
 
 export default App;
-
-// const testProductList = [
-//   {
-//     id: 1,
-//     name: "Pineapple",
-//     price: "£5",
-//     image:
-//       "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60/",
-//     description: "Ripe Pineapple",
-//   },
-//   {
-//     id: 2,
-//     name: "Pineapple",
-//     price: "£5",
-//     image:
-//       "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60",
-//     description: "Ripe Pineapple",
-//   },
-//   {
-//     id: 3,
-//     name: "Pineapple",
-//     price: "£5",
-//     image:
-//       "https://images.unsplash.com/photo-1557800636-894a64c1696f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60",
-//     description: "Ripe Pineapple",
-//   },
-//   {
-//     id: 4,
-//     name: "Pineapple",
-//     price: "£5",
-//     image:
-//       "https://images.unsplash.com/photo-1528825871115-3581a5387919?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=830&q=80",
-//     description: "Ripe Pineapple",
-//   },
-// ];

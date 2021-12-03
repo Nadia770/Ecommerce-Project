@@ -7,11 +7,12 @@ function ProductList(props) {
     return (
       <ProductCard
         key={product.id}
+        id={product.id}
         name={product.name}
         price={product.price}
         description={product.description}
         image={product.image}
-        handleShowLogin={props.handleShowLogin}
+        addToCart={props.addToCart}
       />
     );
   });

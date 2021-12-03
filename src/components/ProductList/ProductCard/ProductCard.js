@@ -16,7 +16,12 @@ function ProductCard(props) {
           <Card.Title>{props.name}</Card.Title>
           <Card.Subtitle>{props.price}</Card.Subtitle>
           <Card.Text>{props.description}</Card.Text>
-          <Button variant="secondary" onClick={props.handleShowLogin}>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              props.addToCart(props.id);
+            }}
+          >
             Add to Cart
           </Button>
         </Card.Body>
