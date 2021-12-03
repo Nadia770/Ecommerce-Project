@@ -33,7 +33,7 @@ function CartItems(props) {
         </div>
       </td>
       <td>{props.price}</td>
-      <td>2</td>
+      <td>{props.price * props.count}</td>
     </tr>
   );
 }

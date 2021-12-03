@@ -101,12 +101,13 @@ function App() {
           : product
       )
     );
+    const newProduct = cartProducts.filter((product) => product.id === id);
     fetch(`http://localhost:8080/cart/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(cartProducts),
+      body: JSON.stringify(newProduct[0]),
     });
-    console.log(cartProducts);
+    console.log(newProduct[0]);
   }
 
   //Decrement product in cart
@@ -123,9 +124,9 @@ function App() {
     fetch(`http://localhost:8080/cart/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newProduct),
+      body: JSON.stringify(newProduct[0]),
     });
-    console.log(cartProducts);
+    console.log(newProduct[0]);
   }
 
   //search functionality
