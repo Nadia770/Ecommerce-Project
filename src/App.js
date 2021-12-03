@@ -100,28 +100,12 @@ function App() {
     });
   }
 
-<<<<<<< Updated upstream
-
-//search functionality
-  const searchHandler = (searchTerm)=>{
-    setSearchTerm(searchTerm);
-    if(searchTerm !== ""){
-      const filteredProductList = productList.filter((product)=>{
-        return product.name
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase());
-=======
-  //filter userinput in searchbar
-
+  //search functionality
   const searchHandler = (searchTerm) => {
     setSearchTerm(searchTerm);
     if (searchTerm !== "") {
       const filteredProductList = productList.filter((product) => {
-        return Object.values(product)
-          .join(" ")
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase());
->>>>>>> Stashed changes
+        return product.name.toLowerCase().includes(searchTerm.toLowerCase());
       });
       setSearchResults(filteredProductList);
     } else {
