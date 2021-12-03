@@ -71,8 +71,8 @@ function App() {
   }, []);
 
   //Get cart products
-  function fetchCartProducts(id) {
-    fetch(`http://localhost:8080/cart/${id}`)
+  function fetchCartProducts() {
+    fetch(`http://localhost:8080/cart`)
       .then((res) => {
         return res.json();
       })
@@ -83,8 +83,8 @@ function App() {
   }
 
   //Add product to cart
-  function addToCart(id) {
-    return fetch(`http://localhost:8080/cart/${id}`, {
+  function addToCart() {
+    return fetch(`http://localhost:8080/cart`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       // body: JSON.stringify(),
@@ -92,8 +92,8 @@ function App() {
   }
 
   //Decrement product in cart
-  function decrementProduct(id) {
-    fetch(`http://localhost:8080/contact/${id}`, {
+  function decrementProduct() {
+    fetch(`http://localhost:8080/contact/`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       // body: JSON.stringify(),
