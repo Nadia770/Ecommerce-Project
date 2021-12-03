@@ -88,7 +88,7 @@ function App() {
     console.log(JSON.stringify(addedProduct));
     return fetch("http://localhost:8080/cart", {
       method: "POST",
-      headers: { "Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(addedProduct[0]),
     });
   }
@@ -124,32 +124,12 @@ function App() {
     }
   };
 
-  const testCart = [
-    {
-      id: 1,
-      name: "Pineapple",
-      price: "£5",
-      image:
-        "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60/",
-      quantity: "2",
-      totalPrice: "£10",
-    },
-    {
-      id: 2,
-      name: "Pineapple",
-      price: "£5",
-      image:
-        "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZnJ1aXR8ZW58MHx8MHx8&auto=format&fit=crop&w=1400&q=60",
-      quantity: "2",
-      totalPrice: "£10",
-    },
-  ];
   return (
     <div>
       <Router>
         <Navigation
           handleShowLogin={handleShowLogin}
-          // fetchCartProducts={fetchCartProducts}
+          fetchCartProducts={fetchCartProducts}
           searchTerm={searchTerm}
           searchHandler={searchHandler}
         ></Navigation>
@@ -173,7 +153,10 @@ function App() {
               ></ProductList>
             }
           ></Route>
-          <Route path="/cart" element={<Cart cart={testCart}></Cart>}></Route>
+          <Route
+            path="/cart"
+            element={<Cart cart={cartProducts}></Cart>}
+          ></Route>
         </Routes>
       </Router>
     </div>
