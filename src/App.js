@@ -42,7 +42,7 @@ function App() {
   const handleSubmitLogin = (e) => {
     e.preventDefault();
     console.log(loginDetails);
-    userLogin();
+    // userLogin();
   };
 
   //Get product List
@@ -91,9 +91,18 @@ function App() {
     });
   }
 
+  //Increment product in cart
+  function incrementProduct(id) {
+    fetch(`http://localhost:8080/cart/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      // body: JSON.stringify(),
+    });
+  }
+
   //Decrement product in cart
-  function decrementProduct() {
-    fetch(`http://localhost:8080/contact/`, {
+  function decrementProduct(id) {
+    fetch(`http://localhost:8080/cart/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       // body: JSON.stringify(),
@@ -138,7 +147,7 @@ function App() {
       <Router>
         <Navigation
           handleShowLogin={handleShowLogin}
-          fetchCartProducts={fetchCartProducts}
+          // fetchCartProducts={fetchCartProducts}
           searchTerm={searchTerm}
           searchHandler={searchHandler}
         ></Navigation>
