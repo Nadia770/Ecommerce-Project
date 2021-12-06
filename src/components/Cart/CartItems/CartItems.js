@@ -5,6 +5,9 @@ import classes from "./CartItems.module.css";
 // import { FaTrashAlt } from "react-icons/fa";
 
 function CartItems(props) {
+  const totalPrice = (
+    Math.round(props.price * props.count * 100) / 100
+  ).toFixed(2);
   return (
     <tr>
       <td>
@@ -34,11 +37,16 @@ function CartItems(props) {
         </div>
       </td>
       <td>£{props.price}</td>
-      <td>£{props.price * props.count}</td>
+      <td>£{totalPrice}</td>
       <td>
-      <Button  onClick={() => {
-              props.DeleteFromCart(props.id);
-            }} variant="danger">Remove</Button>
+        <Button
+          onClick={() => {
+            props.DeleteFromCart(props.id);
+          }}
+          variant="danger"
+        >
+          Remove
+        </Button>
       </td>
     </tr>
   );
