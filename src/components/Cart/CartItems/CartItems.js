@@ -34,6 +34,9 @@ function CartItems(props) {
       </td>
       <td>{props.price}</td>
       <td>{props.price * props.count}</td>
+      <Button  onClick={() => {
+              props.DeleteFromCart(props.id);
+            }} variant="danger">Remove</Button>
     </tr>
   );
 }

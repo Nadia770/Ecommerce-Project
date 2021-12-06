@@ -86,13 +86,13 @@ function App() {
 
     //delete product from cart
   function DeleteFromCart(id) {
-    return fetch(`http://localhost:8080/cart${id}`, {
+     fetch(`http://localhost:8080/cart${id}`, {
         method: "DELETE"
       }).then(()=>{
-        const newProductList = productList.filter((product) => {
+        const newCartList = cartProducts.filter((product) => {
           return product.id !== id;
         });
-        setCartProducts(newProductList);
+        setCartProducts(newCartList);
       });
     };
 

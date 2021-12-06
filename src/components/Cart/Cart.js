@@ -20,6 +20,7 @@ function Cart(props) {
         productCount={props.productCount}
         setProductCount={props.setProductCount}
         countOfProducts={props.countOfProducts}
+        DeleteFromCart={props.DeleteFromCart}
       />
     );
   });
