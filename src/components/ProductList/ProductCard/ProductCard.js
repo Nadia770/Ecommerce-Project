@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import classes from "./ProductCard.module.css";
 import Image from "react-bootstrap/Image";
 
 function ProductCard(props) {
+  const [disabled, setDisabled] = useState(false);
   return (
     <div>
       <Card border="dark" style={{ width: "18rem" }} className={classes.card}>
@@ -17,9 +18,11 @@ function ProductCard(props) {
           <Card.Subtitle>£{props.price}</Card.Subtitle>
           <Card.Text>{props.description}</Card.Text>
           <Button
+            disabled={disabled}
             variant="secondary"
             onClick={() => {
-              props.addToCart(props.id);
+              props.addToCart(props.id)
+              setDisabled(true);
             }}
           >
             Add to Cart

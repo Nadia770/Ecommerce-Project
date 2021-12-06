@@ -1,8 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Button from "react-bootstrap/Button";
 
 export default function Checkout(props) {
-  let totalCartPrice = 0
+  // const [totalCartPrice, setTotalPrice] = useState(0);
+  let totalCartPrice = 0;
+  
+  
   return (
     <div>
     <section className="py-5">
@@ -11,7 +14,6 @@ export default function Checkout(props) {
            <div className="col-md-4 order-md-2 mb-4">
                <h4 className="d-flex justify-content-between align-items-center mb-3">
                <span className="text-muted">Your cart</span>
-               <span className="badge badge-secondary badge-pill">3</span>
                </h4>
                <ul className="list-group mb-3">
               { props.cart.map((product) => {
@@ -31,11 +33,12 @@ export default function Checkout(props) {
                    <h6 className="my-0">Promo code</h6>
                    <small>FIRSTTIMEBUYER</small>
                    </div>
-                   <span className="text-success">-£1</span>
+                   <span className="text-success">-£0.50</span>
                </li>
                <li className="list-group-item d-flex justify-content-between">
                    <span>Total (GBP)</span>
-                   <strong>£{totalCartPrice - 1}</strong>
+                   {/* <strong>£{setTotalPrice(totalCartPrice - 0.50)}</strong> */}
+                   <strong>{(totalCartPrice - 0.50)}</strong>
                </li>
                </ul>
            </div>

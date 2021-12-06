@@ -81,6 +81,7 @@ function App() {
   //Add product to cart
   function addToCart(id) {
     const addedProduct = productList.filter((product) => product.id === id);
+    
     console.log(addedProduct);
     return fetch("http://localhost:8080/cart", {
       method: "POST",
@@ -207,8 +208,6 @@ function App() {
             path="/checkout"
             element={
               <Checkout
-              setProductCount={setProductCount}
-              countOfProducts={countOfProducts}
               cart={cartProducts}
                 ></Checkout>
             }
