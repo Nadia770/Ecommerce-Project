@@ -2,6 +2,7 @@ import React from "react";
 import Table from "react-bootstrap/Table";
 import classes from "./Cart.module.css";
 import Button from "react-bootstrap/Button";
+import Stack from "react-bootstrap/Stack";
 import CartItems from "./CartItems/CartItems";
 import { Link } from "react-router-dom";
 
@@ -26,7 +27,7 @@ function Cart(props) {
     );
   });
   return (
-    <div className={classes.cart}>
+    <div>
       <h1 className={classes.heading}>Shopping Cart</h1>
       <Table className={classes.table} size="sm">
         <thead>
@@ -39,9 +40,14 @@ function Cart(props) {
         </thead>
         <tbody>{displayCartItems}</tbody>
       </Table>
-      <Button variant="danger" className={classes.checkout}>
-       <Link to="/checkout">Checkout</Link> 
-      </Button>
+
+      <Stack gap={2} className="col-md-5 mx-auto">
+        <Button variant="danger" className={classes.checkout}>
+          <Link className={classes.link} to="/checkout">
+            Checkout
+          </Link>
+        </Button>
+      </Stack>
     </div>
   );
 }

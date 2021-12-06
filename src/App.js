@@ -81,7 +81,6 @@ function App() {
   //Add product to cart
   function addToCart(id) {
     const addedProduct = productList.filter((product) => product.id === id);
-    console.log(addedProduct);
     return fetch("http://localhost:8080/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -93,8 +92,7 @@ function App() {
   function DeleteFromCart(id) {
     fetch(`http://localhost:8080/cart/${id}`, {
       method: "DELETE",
-    })
-    .then(() => {
+    }).then(() => {
       const newCartList = cartProducts.filter((product) => {
         return product.id !== id;
       });
@@ -207,12 +205,12 @@ function App() {
             path="/checkout"
             element={
               <Checkout
-              setProductCount={setProductCount}
-              countOfProducts={countOfProducts}
-              cart={cartProducts}
-                ></Checkout>
+                setProductCount={setProductCount}
+                countOfProducts={countOfProducts}
+                cart={cartProducts}
+              ></Checkout>
             }
-            ></Route>
+          ></Route>
         </Routes>
       </Router>
     </div>
