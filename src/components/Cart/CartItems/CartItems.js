@@ -2,6 +2,7 @@ import React from "react";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import classes from "./CartItems.module.css";
+// import { FaTrashAlt } from "react-icons/fa";
 
 function CartItems(props) {
   return (
@@ -34,9 +35,11 @@ function CartItems(props) {
       </td>
       <td>{props.price}</td>
       <td>{props.price * props.count}</td>
+      <td>
       <Button  onClick={() => {
               props.DeleteFromCart(props.id);
             }} variant="danger">Remove</Button>
+      </td>
     </tr>
   );
 }
