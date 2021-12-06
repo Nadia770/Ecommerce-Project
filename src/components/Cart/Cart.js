@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import classes from "./Cart.module.css";
 import Button from "react-bootstrap/Button";
 import CartItems from "./CartItems/CartItems";
+import { Link } from "react-router-dom";
 
 function Cart(props) {
   const displayCartItems = props.cart.map((product) => {
@@ -39,7 +40,7 @@ function Cart(props) {
         <tbody>{displayCartItems}</tbody>
       </Table>
       <Button variant="danger" className={classes.checkout}>
-        Checkout
+       <Link to="/checkout">Checkout</Link> 
       </Button>
     </div>
   );

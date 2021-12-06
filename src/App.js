@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 import Navigation from "./components/Navigation/Navigation";
 import ProductList from "./components/ProductList/ProductList";
 import Login from "./components/Login/Login";
 
 import Cart from "./components/Cart/Cart";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Checkout from "./components/Checkout/Checkout";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -201,6 +203,16 @@ function App() {
               ></Cart>
             }
           ></Route>
+          <Route
+            path="/checkout"
+            element={
+              <Checkout
+              setProductCount={setProductCount}
+              countOfProducts={countOfProducts}
+              cart={cartProducts}
+                ></Checkout>
+            }
+            ></Route>
         </Routes>
       </Router>
     </div>
