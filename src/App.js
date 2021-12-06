@@ -59,7 +59,7 @@ function App() {
 
   useEffect(() => {
     fetchProductList();
-  }, []);
+  }, ["http://localhost:8080/products"]);
 
   //Get cart products
   function fetchCartProducts() {
@@ -73,10 +73,14 @@ function App() {
     console.log("This is invoked");
   }
 
+  useEffect(() => {
+    fetchCartProducts();
+  }, ["http://localhost:8080/cart"]);
+
   //Add product to cart
   function addToCart(id) {
     const addedProduct = productList.filter((product) => product.id === id);
-    console.log(addedProduct)
+    console.log(addedProduct);
     return fetch("http://localhost:8080/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -84,17 +88,17 @@ function App() {
     });
   }
 
-    //delete product from cart
+  //delete product from cart
   function DeleteFromCart(id) {
-     fetch(`http://localhost:8080/cart${id}`, {
-        method: "DELETE"
-      }).then(()=>{
-        const newCartList = cartProducts.filter((product) => {
-          return product.id !== id;
-        });
-        setCartProducts(newCartList);
+    fetch(`http://localhost:8080/cart${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      const newCartList = cartProducts.filter((product) => {
+        return product.id !== id;
       });
-    };
+      setCartProducts(newCartList);
+    });
+  }
 
   function countOfProducts(id, increment) {
     const addProduct = productList.filter((product) => product.id === id);
@@ -153,9 +157,6 @@ function App() {
       setSearchResults(productList);
     }
   };
-
-
-
 
   return (
     <div>
