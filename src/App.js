@@ -76,13 +76,25 @@ function App() {
   //Add product to cart
   function addToCart(id) {
     const addedProduct = productList.filter((product) => product.id === id);
-    console.log(JSON.stringify(addedProduct));
+    console.log(addedProduct)
     return fetch("http://localhost:8080/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(addedProduct),
+      body: JSON.stringify(addedProduct[0]),
     });
   }
+
+    //delete product from cart
+  function DeleteFromCart(id) {
+    return fetch(`http://localhost:8080/cart${id}`, {
+        method: "DELETE"
+      }).then(()=>{
+        const newProductList = productList.filter((product) => {
+          return product.id !== id;
+        });
+        setCartProducts(newProductList);
+      });
+    };
 
   function countOfProducts(id, increment) {
     const addProduct = productList.filter((product) => product.id === id);
@@ -142,6 +154,9 @@ function App() {
     }
   };
 
+
+
+
   return (
     <div>
       <Router>
@@ -181,6 +196,7 @@ function App() {
                 productCount={productCount}
                 setProductCount={setProductCount}
                 countOfProducts={countOfProducts}
+                DeleteFromCart={DeleteFromCart}
               ></Cart>
             }
           ></Route>
