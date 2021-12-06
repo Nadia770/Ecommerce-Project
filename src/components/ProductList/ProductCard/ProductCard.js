@@ -14,7 +14,7 @@ function ProductCard(props) {
         />
         <Card.Body>
           <Card.Title>{props.name}</Card.Title>
-          <Card.Subtitle>{props.price}</Card.Subtitle>
+          <Card.Subtitle>£{props.price}</Card.Subtitle>
           <Card.Text>{props.description}</Card.Text>
           <Button
             variant="secondary"

@@ -33,8 +33,8 @@ function CartItems(props) {
           </Button>
         </div>
       </td>
-      <td>{props.price}</td>
-      <td>{props.price * props.count}</td>
+      <td>£{props.price}</td>
+      <td>£{props.price * props.count}</td>
       <td>
       <Button  onClick={() => {
               props.DeleteFromCart(props.id);

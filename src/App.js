@@ -70,7 +70,6 @@ function App() {
       .then((data) => {
         setCartProducts(data);
       });
-    console.log("This is invoked");
   }
 
   useEffect(() => {
@@ -90,9 +89,10 @@ function App() {
 
   //delete product from cart
   function DeleteFromCart(id) {
-    fetch(`http://localhost:8080/cart${id}`, {
+    fetch(`http://localhost:8080/cart/${id}`, {
       method: "DELETE",
-    }).then(() => {
+    })
+    .then(() => {
       const newCartList = cartProducts.filter((product) => {
         return product.id !== id;
       });
