@@ -22,10 +22,10 @@ export default function Navigation(props) {
           </Nav>
           <Link
             to="/cart"
-            className="justify-content-end"
+            className={classes.link}
             onClick={() => props.fetchCartProducts(1)}
           >
-            <span className={classes.link}>
+            <span>
               <FaShoppingCart />
               <span className={classes.navText}>Cart</span>
             </span>

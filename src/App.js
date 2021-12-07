@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import Navigation from "./components/Navigation/Navigation";
 import ProductList from "./components/ProductList/ProductList";
 import Login from "./components/Login/Login";
-
 import Cart from "./components/Cart/Cart";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Checkout from "./components/Checkout/Checkout";
@@ -33,20 +31,6 @@ function App() {
       username: loginDetails.username,
       password: e.target.value,
     });
-
-  //Login
-  // function userLogin() {
-  //   return fetch(`http://localhost:8080/login`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(loginDetails),
-  //   });
-  // }
-  const handleSubmitLogin = (e) => {
-    e.preventDefault();
-    console.log(loginDetails);
-    // userLogin();
-  };
 
   //Get product List
   function fetchProductList() {
@@ -82,7 +66,6 @@ function App() {
   function addToCart(id) {
     const addedProduct = productList.filter((product) => product.id === id);
 
-    console.log(addedProduct);
     return fetch("http://localhost:8080/cart", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -102,14 +85,6 @@ function App() {
     });
   }
 
-  function countOfProducts(id, increment) {
-    const addProduct = productList.filter((product) => product.id === id);
-    setProductCount(productCount + increment);
-    addProduct[0].count = productCount;
-    console.log(addProduct);
-    console.log(productCount);
-  }
-
   //Increment product in cart
   function incrementProduct(id) {
     setCartProducts((cart) =>
@@ -125,7 +100,8 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProduct[0]),
     });
-    console.log(newProduct[0]);
+    console.log(newProduct);
+    console.log(cartProducts);
   }
 
   //Decrement product in cart
@@ -144,7 +120,6 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProduct[0]),
     });
-    console.log(newProduct[0]);
   }
 
   //search functionality
@@ -174,7 +149,6 @@ function App() {
           showLogin={showLogin}
           handleChangeUserName={handleChangeUserName}
           handleChangePassword={handleChangePassword}
-          handleSubmitLogin={handleSubmitLogin}
         ></Login>
         <Routes>
           <Route
@@ -198,7 +172,7 @@ function App() {
                 decrementProduct={decrementProduct}
                 productCount={productCount}
                 setProductCount={setProductCount}
-                countOfProducts={countOfProducts}
+                // countOfProducts={countOfProducts}
                 DeleteFromCart={DeleteFromCart}
               ></Cart>
             }

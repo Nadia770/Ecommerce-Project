@@ -21,7 +21,7 @@ function Cart(props) {
         decrementProduct={props.decrementProduct}
         productCount={props.productCount}
         setProductCount={props.setProductCount}
-        countOfProducts={props.countOfProducts}
+        // countOfProducts={props.countOfProducts}
         DeleteFromCart={props.DeleteFromCart}
       />
     );
@@ -41,13 +41,13 @@ function Cart(props) {
         <tbody>{displayCartItems}</tbody>
       </Table>
 
-      <Stack gap={2} className="col-md-5 mx-auto">
-        <Button variant="danger" className={classes.checkout}>
-          <Link className={classes.link} to="/checkout">
+      <Link className={classes.link} to="/checkout">
+        <Stack gap={2} className="col-md-5 mx-auto">
+          <Button variant="danger" className={classes.checkout}>
             Checkout
-          </Link>
-        </Button>
-      </Stack>
+          </Button>
+        </Stack>
+      </Link>
     </div>
   );
 }

@@ -2,7 +2,6 @@ import React from "react";
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import classes from "./CartItems.module.css";
-// import { FaTrashAlt } from "react-icons/fa";
 
 function CartItems(props) {
   const totalPrice = (
@@ -13,9 +12,9 @@ function CartItems(props) {
       <td>
         <Image
           src={props.image}
-          style={{ maxHeight: "15rem", objectFit: "cover" }}
+          style={{ maxHeight: "15rem", maxWidth: "10rem", objectFit: "cover" }}
         ></Image>
-        <span>{props.name}</span>
+        <span className={classes.productName}>{props.name}</span>
       </td>
       <td>
         <div>
