@@ -15,7 +15,6 @@ function App() {
   const [cartProducts, setCartProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [productCount, setProductCount] = useState(1);
 
   //Login Modal functionaility
   const handleCloseLogin = () => setShowLogin(false);
@@ -100,7 +99,6 @@ function App() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProduct[0]),
     });
-    console.log(newProduct);
     console.log(cartProducts);
   }
 
@@ -170,9 +168,6 @@ function App() {
                 cart={cartProducts}
                 incrementProduct={incrementProduct}
                 decrementProduct={decrementProduct}
-                productCount={productCount}
-                setProductCount={setProductCount}
-                // countOfProducts={countOfProducts}
                 DeleteFromCart={DeleteFromCart}
               ></Cart>
             }

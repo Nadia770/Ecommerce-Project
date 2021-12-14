@@ -19,9 +19,6 @@ function Cart(props) {
         totalPrice={product.totalPrice}
         incrementProduct={props.incrementProduct}
         decrementProduct={props.decrementProduct}
-        productCount={props.productCount}
-        setProductCount={props.setProductCount}
-        // countOfProducts={props.countOfProducts}
         DeleteFromCart={props.DeleteFromCart}
       />
     );
